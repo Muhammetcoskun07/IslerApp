@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İş Takip Sistemi</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f3f4f6;
+            margin: 20px;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin-top: 20px;
+            color: #34495e;
+        }
+
+        hr {
+            border: 1px solid #e0e0e0;
+            margin-bottom: 30px;
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .content {
+            flex: 3;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-right: 20px;
+        }
+
+        .sidebar {
+            flex: 1;
+            text-align: right;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .job-detail,
+        .assigned-person,
+        .job-date {
+            margin-top: 10px;
+            line-height: 1.5;
+            font-size: 16px;
+            color: #555;
+        }
+
+            .assigned-person strong {
+                color: #2980b9;
+            }
+
+        .status-section {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            text-align: left;
+            flex-wrap: wrap;
+        }
+
+            .status-section label {
+                margin-right: 10px;
+                font-size: 16px;
+                font-weight: 600;
+            }
+
+            .status-section select {
+                margin-right: 10px;
+                padding: 5px;
+                font-size: 16px;
+                border: 1px solid #ced4da;
+                border-radius: 4px;
+            }
+
+            .status-section button {
+                padding: 5px 15px;
+                font-size: 16px;
+                cursor: pointer;
+                background-color: #28a745;
+                color: #fff;
+                border: none;
+                border-radius: 4px;
+                transition: background-color 0.2s ease-in-out;
+            }
+
+                .status-section button:hover {
+                    background-color: #218838;
+                }
+
+        .action-buttons {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+            .action-buttons a {
+                display: inline-block;
+                padding: 8px 15px;
+                font-size: 16px;
+                margin-right: 10px;
+                text-decoration: none;
+                color: #fff;
+                background-color: #007bff;
+                border-radius: 4px;
+                transition: background-color 0.2s ease-in-out;
+            }
+
+                .action-buttons a:hover {
+                    background-color: #0056b3;
+                }
+
+        .job-date {
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>İş Takip Sistemi</h1>
+    <hr />
+    <div class="main-content">
+        <div class="content">
+            <h3>@Model.IsBaslik</h3>
+            <p class="job-detail">@Model.Detay</p>
+            <p class="assigned-person">Atanan Kişi: <strong>@Model.Name</strong></p>
+            <p class="job-date">İşin Açılma Tarihi: @Model.CreatedDate</p>
+        </div>
+        <div class="sidebar">
+            <div class="action-buttons">
+                <a href="/home/Duzenle/@Model.Id" class="btn btn-primary">Düzenle</a>
+                <a href="/home/Sil/@Model.Id" class="btn btn-danger" onclick="return confirm('Emin misin?')">Sil</a>
+            </div>
+            <div class="status-section">
+                <form action="/Home/ChangeStatus/@Model.Id" method="post">
+                <label for="Status">Durumu:</label>
+                <select id="Status" name="StatusId">
+                    @if (Model.Status == "Aktif")
+                    {
+                            <option value="1" >Tamamlandı</option>
+                            <option value="2" selected>Aktif</option>
+                    }
+                    else
+                    {
+                            <option value="1" selected>Tamamlandı</option>
+                            <option value="2" >Aktif</option>
+                    }
+                </select>
+                    <button type="submit">Değiştir</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

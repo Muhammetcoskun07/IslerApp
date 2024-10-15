@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: 600;
+            color: #495057;
+            margin-top: 10px;
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+
+        .alert {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 4px;
+            color: #0c5460;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>@ViewData["Title"]</h1>
+
+        <form class="row g-3 mb-1" method="post" action="/Admin/AddJob" autocomplete="off">
+
+            <label for="IsBaslik">Eklenecek İş Başlığı</label>
+            <input type="text" name="IsBaslik" required placeholder="Başlık" />
+
+            <label for="Detay">Eklenecek İş Detayı</label>
+            <textarea name="Detay" required placeholder="Detay"></textarea>
+
+            <label for="Name">İşi Yapacak Kişi</label>
+            <input type="text" class="form-control" style="background-color: white" name="Name" required placeholder="Ad Soyad" />
+
+            <label for="Status">İşin Durumu</label>
+            <select id="Status" name="Status">
+                <option value="1">Aktif</option>
+                <option value="2">Tamamlandı</option>
+            </select>
+
+            <button class="btn btn-primary">Ekle</button>
+
+            @if (ViewData["Mesaj"] != null)
+            {
+                <div class="alert alert-primary" role="alert">
+                    @ViewData["Mesaj"]
+                </div>
+            }
+        </form>
+    </div>
+</body>
+</html>

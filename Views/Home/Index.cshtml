@@ -1,0 +1,154 @@
+﻿@model List<IslerModel>
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 20px;
+            color: #343a40;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #495057;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section-header {
+            background-color: #17a2b8; 
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 12px 12px 0 0;
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            padding: 20px;
+            margin-top: 10px;
+        }
+
+        .card-header {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #007bff; 
+            margin-bottom: 15px;
+        }
+
+        .card-content {
+            font-size: 1.1rem;
+        }
+
+        .card-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+            .card-item:last-child {
+                border-bottom: none;
+            }
+
+            .card-item span {
+                font-weight: 600;
+            }
+
+            .card-item .item-value {
+                color: #28a745; 
+            }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #ffffff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            .button:hover {
+                background-color: #0056b3;
+            }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>İş Takip Raporu</h1>
+
+        <div class="section">
+            <div class="section-header">Kişi Raporu</div>
+            @foreach (var item in Model)
+            {
+                <div class="card">
+                    <div class="card-header">@item.Name</div>
+                    <div class="card-content">
+                        <div class="card-item">
+                            <span>Aktif İşler:</span>
+                            <span class="item-value">@item.Active</span>
+                        </div>
+                        <div class="card-item">
+                            <span>Tamamlanan İşler:</span>
+                            <span class="item-value">@item.Tamamlandi</span>
+                        </div>
+                        <div class="card-item">
+                            <span>Toplam:</span>
+                            <span class="item-value">@item.Total</span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="button-container">
+            <a href="/home/HepsiniGoster" class="button">Hepsini Göster</a>
+        </div>
+
+        <div class="footer">
+            &copy; 2024 İş Takip Uygulaması
+        </div>
+    </div>
+</body>
+</html>
