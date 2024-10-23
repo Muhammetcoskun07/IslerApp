@@ -7,7 +7,6 @@ namespace IslerApp.Controllers
 {
     public class AdminController : Controller
     {
-        string connectionString = "Server=45.84.189.34\\MSSQLSERVER2019;Initial Catalog=muham128_IsTakip;User Id=muham128_IsTakipdbuser;Password=522848Aa.;TrustServerCertificate=True";
 
         public IActionResult Index()
         {
